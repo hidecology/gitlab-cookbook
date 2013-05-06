@@ -1,0 +1,15 @@
+# GitLab user. git by default
+user: git
+
+# Url to gitlab instance. Used for api calls
+<% if node['gitlab']['gitlabhq']['use_subdirectory'] %>
+gitlab_url: "http://<%= node['gitlab']['gitlabhq']['host_name'] %>/<%= node['gitlab']['gitlabhq']['subdirectory'] %>/"
+<% else %>
+gitlab_url: "http://<%= node['gitlab']['gitlabhq']['host_name'] %>/"
+<% end %>
+
+# Repositories path
+repos_path: "<%= node['gitlab']['gitlab_shell']['repo_path'] %>"
+
+# File used as authorized_keys for gitlab user
+auth_file: "<%= node['gitlab']['gitlab_user_dir'] %>/.ssh/authorized_keys"
